@@ -22,6 +22,11 @@ Route::post('login', 'APIController@login');
 Route::post('logout', 'APIController@logout');
 Route::post('checktoken', 'APIController@checktoken');
 Route::post('addproduct', 'APIProductController@add');
+Route::get('product','APIProductController@show');
+Route::get('login', []);
+Route::get('product/{id}', 'APIProductController@edit');
+Route::post('product/edit/{id}', 'APIProductController@postedit');
+Route::delete('product/{id}','APIProductController@delete' );
 
 
 
