@@ -28,13 +28,13 @@ Route::get('product/{id}', 'APIProductController@edit');
 Route::post('product/edit/{id}', 'APIProductController@postedit');
 Route::delete('product/{id}','APIProductController@delete' );
 
-Route::post('product/cart', 'CartAPIController@add');
-
 
 
 Route::group(['middleware' => 'auth.jwt', 'prefix' => 'auth'], function () {
     Route::get('logout', 'APIController@logout');
     Route::get('users', 'UserController@index');
+    Route::post('product/cart', 'CartAPIController@add');
+    Route::post('product/cart/list', 'CartAPIController@show');
 });
 
 
