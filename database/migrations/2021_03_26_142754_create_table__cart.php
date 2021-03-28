@@ -13,16 +13,19 @@ class CreateTableCart extends Migration
      */
     public function up()
     {
-        Schema::create('Table_Cart', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('user_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
-            $table->string('avatar')->nullable();
-            $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('table_cart')){
+            Schema::create('Table_Cart', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->bigInteger('user_id')->nullable();
+                $table->string('name')->nullable();
+                $table->string('description')->nullable();
+                $table->string('avatar')->nullable();
+                $table->softDeletes();
+                $table->foreign('user_id')->references('id')->on('users');
+                $table->timestamps();
+            });
+        }
+       
     }
 
     /**

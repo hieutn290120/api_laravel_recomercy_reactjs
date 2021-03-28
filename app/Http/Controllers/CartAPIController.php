@@ -14,23 +14,23 @@ class CartAPIController extends Controller
     //
     public function add(Request $request){
         
-        $data = $request->only('token','prdId');
+        $data = $request->only('token','prdId','quantity');
         $user = JWTAuth::toUser($data);
         $findPrd = Product::find($data);
-        
+        $cart1 =  Cart::where('name',$findPrd[0]->name)->get();
 
-        $cart = Cart::create(
+        $cart = Cart::updateOrCreate(
+            ['name' => $findPrd[0]->name],
             ['user_id' => $user->id,
-            'name' => $findPrd[0]->name,
             'description' => $findPrd[0]->description,
-            'avatar' => $findPrd[0]->avatar
+            'avatar' => $findPrd[0]->avatar,
+            'quantity' => $cart1[0]->quantity + 1,
             ]
         );
         
         return response()->json([
             'status' => true,
-            'users'=>$user,
-            'listprd' => $findPrd,
+            'listprd' =>  $cart
         ]);
     }
 
