@@ -46,19 +46,15 @@ class CartAPIController extends Controller
             ]);
     }
 
-    public function delete(Request $request){
-        $data = $request->all();
+    public function delete(Request $request,$id){
 
-        $cart = Cart::find($data['prd_id'])->delete();
-        if(!$request->all()['prd_id']){
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid Email or Password',
-            ], 401);
-        }
+        // Cart::where('id',$id)->delete();
+
+        $listcart = Cart::all();
+
         return response()->json([
-          'status' => true,  
-          'listcart' => $cart
+            'status' => true,
+            'listcart' => $listcart,
         ]);
     }
 
