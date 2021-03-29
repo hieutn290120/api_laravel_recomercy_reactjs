@@ -16,21 +16,21 @@ class CartAPIController extends Controller
         
         $data = $request->only('token','prdId','quantity');
         $user = JWTAuth::toUser($data);
-        $findPrd = Product::find($data);
-        $cart1 =  Cart::where('name',$findPrd[0]->name)->get();
+        $findPrd = Product::find($request->all()['prdId']);
 
         $cart = Cart::updateOrCreate(
-            ['name' => $findPrd[0]->name],
+            ['name' => $findPrd->name],
             ['user_id' => $user->id,
-            'description' => $findPrd[0]->description,
-            'avatar' => $findPrd[0]->avatar,
-            'quantity' => $cart1[0]->quantity + 1,
+            'description' => $findPrd->description,
+            'avatar' => $findPrd->avatar,
+            'quantity' =>  $request->all()['quantity'],
+            'prd_id' =>  $findPrd->id,
             ]
         );
         
         return response()->json([
             'status' => true,
-            'listprd' =>  $cart
+            'listprd' => $findPrd->id
         ]);
     }
 
@@ -45,4 +45,21 @@ class CartAPIController extends Controller
                 'listcart' => $listCartByIduser,
             ]);
     }
+
+    public function delete(Request $request){
+        $data = $request->all();
+
+        $cart = Cart::find($data['prd_id'])->delete();
+        if(!$request->all()['prd_id']){
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid Email or Password',
+            ], 401);
+        }
+        return response()->json([
+          'status' => true,  
+          'listcart' => $cart
+        ]);
+    }
+
 }
