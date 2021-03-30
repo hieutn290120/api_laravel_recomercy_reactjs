@@ -18,7 +18,7 @@ class CartAPIController extends Controller
         $user = JWTAuth::toUser($data);
         $findPrd = Product::find($request->all()['prdId']);
 
-        $cart = Cart::updateOrCreate(
+        $cart_one = Cart::updateOrCreate(
             ['name' => $findPrd->name],
             ['user_id' => $user->id,
             'description' => $findPrd->description,
@@ -28,9 +28,11 @@ class CartAPIController extends Controller
             ]
         );
         
+        $cart_all = Cart::where('user_id',$user->id,)->get();
+
         return response()->json([
             'status' => true,
-            'listprd' => $findPrd->id
+            'listprd' =>   $cart_all
         ]);
     }
 
@@ -48,7 +50,7 @@ class CartAPIController extends Controller
 
     public function delete(Request $request,$id){
 
-        // Cart::where('id',$id)->delete();
+        Cart::where('id',$id)->delete();
 
         $listcart = Cart::all();
 

@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix' => 'auth'], function () {
     Route::post('product/cart', 'CartAPIController@add');
     Route::post('product/cart/list', 'CartAPIController@show');
     Route::delete('product/cart/remove/{id}', 'CartAPIController@delete');
+    Route::get('pagination/{id}', 'APIPagination@Pagination');
 });
 
 
