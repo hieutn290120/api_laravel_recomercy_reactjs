@@ -60,4 +60,11 @@ class CartAPIController extends Controller
         ]);
     }
 
+    public function showdashboard(){
+
+        $listCartByIduser = Cart::all();
+
+        return response()->json($listCartByIduser, 200);
+}
+
 }

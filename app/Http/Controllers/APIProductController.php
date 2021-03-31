@@ -72,4 +72,12 @@ class APIProductController extends Controller
             'product'=> $product,
         ]);
     }
+
+    public function showdashboard(){
+
+        $product = Product::all();
+        return response()->json(
+            $product, 200
+        );
+    }
 }
