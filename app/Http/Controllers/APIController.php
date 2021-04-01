@@ -60,13 +60,4 @@ class APIController extends Controller
             ], 500);
         }
     }
-
-    public function checktoken(Request $request)
-    {
-        $token = $request->input('token');
-        return response()->json([
-            'status' => true,
-            'token' => $token
-        ]);
-    }
 }

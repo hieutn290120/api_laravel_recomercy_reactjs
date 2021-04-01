@@ -13,11 +13,14 @@ class InsertColumnToTablecart extends Migration
      */
     public function up()
     {
-        Schema::table('table_cart', function (Blueprint $table) {
-            //
-            $table->BigInteger('prd_id')->nullable();
-            $table->foreign('prd_id')->references('id')->on('table_product');
-        });
+        if (!Schema::hasTable('table_cart')){
+            Schema::table('table_cart', function (Blueprint $table) {
+                //
+                $table->BigInteger('prd_id')->nullable();
+                $table->foreign('prd_id')->references('id')->on('table_product');
+            });
+        }
+       
     }
 
     /**

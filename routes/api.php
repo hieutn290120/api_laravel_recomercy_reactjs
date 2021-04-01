@@ -22,6 +22,7 @@ Route::post('login', 'APIController@login');
 Route::post('logout', 'APIController@logout');
 Route::post('checktoken', 'APIController@checktoken');
 Route::post('addproduct', 'APIProductController@add');
+Route::post('createorupdateproduct', 'APIProductController@createofupdate');
 Route::get('product','APIProductController@show');
 Route::get('login', []);
 Route::get('product/{id}', 'APIProductController@edit');
@@ -39,6 +40,12 @@ Route::group(['middleware' => 'auth.jwt', 'prefix' => 'auth'], function () {
     Route::post('product/cart/list', 'CartAPIController@show');
     Route::delete('product/cart/remove/{id}', 'CartAPIController@delete');
     Route::get('pagination/{id}', 'APIPagination@Pagination');
+    ///
+    Route::post('createorupdate/product', 'APIProductController_new@createofupdate');
+    Route::get('show/product', 'APIProductController_new@show');
+    Route::delete('remove/product/{id}', 'APIProductController_new@delete');
+
+
 });
 
 
