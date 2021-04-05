@@ -29,6 +29,13 @@ Route::get('product/{id}', 'APIProductController@edit');
 Route::post('product/edit/{id}', 'APIProductController@postedit');
 Route::delete('product/{id}','APIProductController@delete' );
 
+Route::post('register','UserController@register');
+Route::post('registerCustomer','UserController@registerCustomer');
+
+Route::post('uploadfile','UserController@uploadfile');
+Route::delete('remove/user/{id}','UserController@delete');
+
+
 
 
 Route::group(['middleware' => 'auth.jwt', 'prefix' => 'auth'], function () {

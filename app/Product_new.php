@@ -14,6 +14,6 @@ class Product_new extends Model
     public $timestamp = false;
 
     protected $fillable = [
-       'user_id','name','price','categories','description','stock_status','discount','made',
+       'user_id','name','price','categories','description','stock_status','discount','made','avatar'
     ];
 }

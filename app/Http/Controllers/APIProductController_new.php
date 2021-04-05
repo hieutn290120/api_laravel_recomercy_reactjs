@@ -13,6 +13,17 @@ class APIProductController_new extends Controller
       
        
         $user  = JWTAuth::toUser($request->all()['token']);
+
+        $imageDb ='';
+        $imagesName = '';
+        $image = $request->all()['values']['avatar'];
+
+        foreach($image as $img){
+             $new_name = rand().'.'.$img['name'];
+             $imagesName = $imagesName.$new_name;
+            $imageDb = $imagesName;
+            
+        }
     
         $product_one =  Product_new::updateOrCreate(
             ['id' => $request->all()['values']['id_prd']],
@@ -23,7 +34,8 @@ class APIProductController_new extends Controller
             'name' =>  $request->all()['values']['name'],
             'price' =>  $request->all()['values']['price'],
             'stock_status'=> $request->all()['values']['stock'],
-            'user_id' =>$user->id
+            'user_id' =>$user->id,
+            'avatar' => $imageDb
             ]
         );
 
