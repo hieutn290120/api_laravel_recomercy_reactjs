@@ -12,6 +12,6 @@ class Cart extends Model
     public $timestamp = false;
 
     protected $fillable = [
-        'name', 'description', 'avatar', 'user_id', 'quantity', 'prd_id'
+        'name', 'description', 'avatar', 'user_id', 'quantity', 'prd_id', 'price', 'stock_status','discount'
     ];
 }

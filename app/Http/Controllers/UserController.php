@@ -21,14 +21,12 @@ class UserController extends Controller
 
         $current = new Carbon($request->all()['dob']);
         
-        $imageDb ='';
         $imagesName = '';
         $image = $request->all()['avatar'];
 
         foreach($image as $img){
              $new_name = rand().'.'.$img['name'];
              $imagesName = $imagesName.$new_name.',';
-            $imageDb = $imagesName;
             
         }
 
@@ -42,7 +40,7 @@ class UserController extends Controller
                 'phone' => $request->all()['phone'],
                 'gender' => $request->all()['gender'],
                 'dob' => $current->toDateString(),
-                'avatar' => $imageDb
+                'avatar' => $imagesName
                 ]
         );
 
@@ -58,10 +56,10 @@ class UserController extends Controller
            $new_name = rand().'.'.$img->getClientOriginalExtension();
            $img->move(public_path('uploads/images'),$new_name);
            $imagesName = $imagesName.$new_name.',';
-           return response()->json($img);
+          
         }
-        $imageDb = $imagesName;
-       
+
+        return response()->json($imagesName,200);
     }
 
     public function delete(Request $request, $id){
