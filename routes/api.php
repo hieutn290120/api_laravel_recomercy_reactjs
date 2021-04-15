@@ -18,9 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::post('login', 'APIController@login');
+
 Route::post('logout', 'APIController@logout');
-Route::post('checktoken', 'APIController@checktoken');
+
+
 Route::post('addproduct', 'APIProductController@add');
 Route::post('createorupdateproduct', 'APIProductController@createofupdate');
 
@@ -31,20 +34,20 @@ Route::get('product/pc','APIProductController_new@showpc');
 Route::get('product/api/{id}','APIProductController_new@showproductbyid');
 
 
-Route::get('login', []);
-// Route::get('product/{id}', 'APIProductController@edit');
-// Route::post('product/edit/{id}', 'APIProductController@postedit');
-// Route::delete('product/{id}','APIProductController@delete' );
-
 Route::post('register','UserController@register');
 Route::post('registerCustomer','UserController@registerCustomer');
 
 Route::post('uploadfile','UserController@uploadfile');
 Route::delete('remove/user/{id}','UserController@delete');
 
+//Verify Mail
+Route::group(['middleware' => 'auth.jwt'], function () {
+
+    Route::post('roles','UserController@roles');
+
+});
+
 // Count_Rate
-
-
 Route::get('product/rate/{id}','APICountRate@show');
 
 
@@ -56,10 +59,16 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::post('product/addtocart', 'APICartShoppingController@add');
     Route::post('product/updatequantity', 'APICartShoppingController@updateQuantity');
     Route::post('product/getdatacart', 'APICartShoppingController@showlistcart');
+    Route::post('product/getdatacartanduser', 'APICartShoppingController@showlistcartanduser');
     Route::delete('product/deletecart/{id}', 'APICartShoppingController@removelistcartbyid');
     Route::get('product/getdatacart/discount', 'APICartShoppingController@showlistcartdiscount');
 });
-//
+
+//SenMail
+
+Route::group(['middleware' => 'auth.jwt'], function () {
+    Route::post('sendmail','APISendMailController@sendMail');
+});
 
 Route::group(['middleware' => 'auth.jwt', 'prefix' => 'auth'], function () {
     Route::get('logout', 'APIController@logout');

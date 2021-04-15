@@ -82,6 +82,9 @@ class APIProductController_new extends Controller
          $product = Product_new::where('id',$id)->get();
          return response()->json($product);
      }
+
+
+     
         
 }
 

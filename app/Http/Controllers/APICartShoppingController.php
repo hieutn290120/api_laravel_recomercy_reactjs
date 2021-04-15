@@ -82,5 +82,11 @@ class APICartShoppingController extends Controller
             return response()->json($cart);
     }
 
+    public function showlistcartanduser(Request $request){
+        $user  = JWTAuth::toUser($request->all()['token']);
+        $cart = Cart::where('user_id', $user->id)->get();
+        return response()->json([$user,$cart]
+        );
+    }
     
 }
