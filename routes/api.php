@@ -27,6 +27,8 @@ Route::post('logout', 'APIController@logout');
 Route::post('addproduct', 'APIProductController@add');
 Route::post('createorupdateproduct', 'APIProductController@createofupdate');
 
+
+
 //Product
 Route::get('product','APIProductController_new@shownew');
 Route::get('product/discount','APIProductController_new@showdiscount');
@@ -40,12 +42,20 @@ Route::post('registerCustomer','UserController@registerCustomer');
 Route::post('uploadfile','UserController@uploadfile');
 Route::delete('remove/user/{id}','UserController@delete');
 
-//Verify Mail
+
+//Search Product
+
+Route::post('searchbyname', 'APISearchController@SearchAll');
+
+
+//Check Author
 Route::group(['middleware' => 'auth.jwt'], function () {
 
     Route::post('roles','UserController@roles');
 
 });
+
+
 
 // Count_Rate
 Route::get('product/rate/{id}','APICountRate@show');
@@ -63,6 +73,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::delete('product/deletecart/{id}', 'APICartShoppingController@removelistcartbyid');
     Route::get('product/getdatacart/discount', 'APICartShoppingController@showlistcartdiscount');
 });
+
 
 //SenMail
 
