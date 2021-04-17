@@ -34,7 +34,9 @@ Route::get('product','APIProductController_new@shownew');
 Route::get('product/discount','APIProductController_new@showdiscount');
 Route::get('product/pc','APIProductController_new@showpc');
 Route::get('product/api/{id}','APIProductController_new@showproductbyid');
-
+Route::get('product/moduleamthanh','APIProductController_new@showmoduleamthanh');
+Route::get('product/modulemachnap','APIProductController_new@showmodulemachnap');
+Route::get('product/modulecambien','APIProductController_new@showmodulecambien');
 
 Route::post('register','UserController@register');
 Route::post('registerCustomer','UserController@registerCustomer');

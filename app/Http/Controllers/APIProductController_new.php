@@ -84,7 +84,34 @@ class APIProductController_new extends Controller
      }
 
 
-     
+     //show product Module Am Thanh
+
+     public function showmoduleamthanh(){
+         $product = Product_new::where('description','Module Am Thanh')->orderBy('id', 'desc')->get();
+
+         return response()->json(
+             $product
+         );
+     }
+     //show product Module MACH NAP
+
+     public function showmodulemachnap(){
+        $product = Product_new::where('description','Module Mach Nap')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+     //show product Module CAM UNG
+
+    public function showmodulecambien(){
+        $product = Product_new::where('description','Module Am Thanh')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
         
 }
 
