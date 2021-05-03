@@ -31,12 +31,15 @@ Route::post('createorupdateproduct', 'APIProductController@createofupdate');
 
 //Product
 Route::get('product','APIProductController_new@shownew');
+Route::get('product/banner','APIProductController_new@show');
 Route::get('product/discount','APIProductController_new@showdiscount');
 Route::get('product/pc','APIProductController_new@showpc');
 Route::get('product/api/{id}','APIProductController_new@showproductbyid');
 Route::get('product/moduleamthanh','APIProductController_new@showmoduleamthanh');
 Route::get('product/modulemachnap','APIProductController_new@showmodulemachnap');
 Route::get('product/modulecambien','APIProductController_new@showmodulecambien');
+Route::get('product/modulenguon','APIProductController_new@showmodulenguon');
+
 
 Route::post('register','UserController@register');
 Route::post('registerCustomer','UserController@registerCustomer');
@@ -52,9 +55,13 @@ Route::post('searchbyname', 'APISearchController@SearchAll');
 
 //Check Author
 Route::group(['middleware' => 'auth.jwt'], function () {
-
     Route::post('roles','UserController@roles');
+});
 
+
+//Check Contacus
+Route::group(['middleware' => 'auth.jwt'], function () {
+    Route::post('contactus','APIContactUsController@createfeedback');
 });
 
 

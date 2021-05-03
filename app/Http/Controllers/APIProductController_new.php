@@ -42,7 +42,7 @@ class APIProductController_new extends Controller
     }
 
     public function shownew(){
-        $product = Product_new::paginate(4);
+        $product = Product_new::paginate(12);
         return response()->json(
             $product, 200
         );
@@ -51,7 +51,7 @@ class APIProductController_new extends Controller
     //Show product khuyen mai
     
     public function showdiscount(){
-        $product = Product_new::where('discount', '>', 0)->paginate(4);
+        $product = Product_new::where('discount', '>', 0)->paginate(12);
         return response()->json(
             $product, 200
         );
@@ -61,7 +61,7 @@ class APIProductController_new extends Controller
     //Show product PC
 
     public function showpc(){
-        $product = Product_new::where('categories', 'Pc')->orWhere('categories','Laptop')->paginate(4);
+        $product = Product_new::where('categories', 'Pc')->orWhere('categories','Laptop')->paginate(12);
         return response()->json(
             $product, 200
         );
@@ -107,6 +107,16 @@ class APIProductController_new extends Controller
 
     public function showmodulecambien(){
         $product = Product_new::where('description','Module Am Thanh')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+    //shơ product module nguon
+
+    public function showmodulenguon(){
+        $product = Product_new::where('description','Module Nguon')->orderBy('id', 'desc')->get();
 
         return response()->json(
             $product
