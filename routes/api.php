@@ -33,12 +33,23 @@ Route::post('createorupdateproduct', 'APIProductController@createofupdate');
 Route::get('product','APIProductController_new@shownew');
 Route::get('product/banner','APIProductController_new@show');
 Route::get('product/discount','APIProductController_new@showdiscount');
-Route::get('product/pc','APIProductController_new@showpc');
+Route::get('product/tivi','APIProductController_new@showtivi');
+Route::get('product/remote','APIProductController_new@showremote');
 Route::get('product/api/{id}','APIProductController_new@showproductbyid');
 Route::get('product/moduleamthanh','APIProductController_new@showmoduleamthanh');
 Route::get('product/modulemachnap','APIProductController_new@showmodulemachnap');
 Route::get('product/modulecambien','APIProductController_new@showmodulecambien');
 Route::get('product/modulenguon','APIProductController_new@showmodulenguon');
+Route::get('product/tivisony','APIProductController_new@showtivisony');
+Route::get('product/tivitcl','APIProductController_new@showtivitcl');
+Route::get('product/tivilg','APIProductController_new@showtivilg');
+Route::get('product/tivisamsung','APIProductController_new@showtivisamsung');
+Route::get('product/remotesony','APIProductController_new@showremotesony');
+Route::get('product/remotetcl','APIProductController_new@showremotetcl');
+Route::get('product/remotelg','APIProductController_new@showremotelg');
+Route::get('product/remotesamsung','APIProductController_new@showremotesamsung');
+Route::get('product/amply','APIProductController_new@showamply');
+
 
 
 Route::post('register','UserController@register');

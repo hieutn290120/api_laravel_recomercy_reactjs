@@ -41,7 +41,9 @@ class UserController extends Controller
                 'phone' => $request->all()['phone'],
                 'gender' => $request->all()['gender'],
                 'dob' => $current->toDateString(),
-                'avatar' => $request->all()['avatar']
+                'avatar' => $request->all()['avatar'],
+                //  Roles = 2 => Admin
+                'roles' => 1
                 ]
         );
 
@@ -73,12 +75,14 @@ class UserController extends Controller
     public function registerCustomer(Request $request){
        
         $users = User::updateOrCreate(
-            ['name' => $request->all()['name']],
+            ['email' => $request->all()['email']],
             [
-            'email' => $request->all()['email'],
+            'name' => $request->all()['name'],
             'password' => Hash::make($request->all()['password']),
             'address' => $request->all()['address'],
             'phone' => $request->all()['phone'],
+            //  Roles = 2 => Customer
+            'roles' => 2    
             ]
          );
 

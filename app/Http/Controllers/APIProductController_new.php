@@ -42,7 +42,7 @@ class APIProductController_new extends Controller
     }
 
     public function shownew(){
-        $product = Product_new::paginate(12);
+        $product = Product_new::orderBy('id','desc')->paginate(12);
         return response()->json(
             $product, 200
         );
@@ -51,22 +51,32 @@ class APIProductController_new extends Controller
     //Show product khuyen mai
     
     public function showdiscount(){
-        $product = Product_new::where('discount', '>', 0)->paginate(12);
+        $product = Product_new::where('discount', '>', 0)->orderBy('id','desc')->paginate(12);
         return response()->json(
             $product, 200
         );
     }
  
 
-    //Show product PC
+    //Show product ALL TIVI
 
-    public function showpc(){
-        $product = Product_new::where('categories', 'Pc')->orWhere('categories','Laptop')->paginate(12);
+    public function showtivi(){
+        $product = Product_new::where('description', 'TIVI SONY')->orWhere('description', 'TIVI SAMSUNG')->orWhere('description', 'TIVI LG')->orWhere('description', 'TIVI TCL')->orderBy('id', 'desc')->paginate(12);
         return response()->json(
             $product, 200
         );
     }
 
+    //Show product ALL REMOTE
+
+    public function showremote(){
+        $product = Product_new::where('categories','REMOTE_LG')->orWhere('categories','REMOTE_SAMSUNG')->orWhere('categories','REMOTE_TCL')->orWhere('categories','REMOTE_SONY')->orderBy('id', 'desc')->paginate(12);
+        return response()->json(
+            $product, 200
+        );
+    }
+ 
+    //Xoa San Pham 
     public function delete($id){
         Product_new::where('id',$id)->delete();
         $product = Product_new::all();
@@ -117,6 +127,97 @@ class APIProductController_new extends Controller
 
     public function showmodulenguon(){
         $product = Product_new::where('description','Module Nguon')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+    //show product tivi sony
+
+    public function showtivisony(){
+        $product = Product_new::where('description','TIVI SONY')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+    //show product tivi TCL
+
+    public function showtivitcl(){
+        $product = Product_new::where('description','TIVI TCL')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+    //show product tivi SAMSUNG
+
+    public function showtivisamsung(){
+        $product = Product_new::where('description','TIVI SAMSUNG')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+    //show product tivi LG
+
+    public function showtivilg(){
+        $product = Product_new::where('description','TIVI LG')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+     //show product remote LG
+
+     public function showremotelg(){
+        $product = Product_new::where('categories','REMOTE_LG')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+      //show product remote SAMSUNG
+
+      public function showremotesamsung(){
+        $product = Product_new::where('categories','REMOTE_SAMSUNG')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+      //show product remote SONY
+
+      public function showremotesony(){
+        $product = Product_new::where('categories','REMOTE_SONY')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+      //show product remote TCL
+
+      public function showremotetcl(){
+        $product = Product_new::where('categories','REMOTE_TCL')->orderBy('id', 'desc')->get();
+
+        return response()->json(
+            $product
+        );
+    }
+
+    
+      //show product amply
+
+      public function showamply(){
+        $product = Product_new::where('categories','AMPLY')->orderBy('id', 'desc')->get();
 
         return response()->json(
             $product
