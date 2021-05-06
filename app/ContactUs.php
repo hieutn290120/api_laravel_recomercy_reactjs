@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class ContactUs extends Model
 {
     //
-    public $table  = 'contacus';
-    protected $timestamps = 'false';
+    protected $table  = 'contacus';
+    public $timestamps = 'false';
+
+    protected $fillable = [
+        'name','email','phone','feedback','address','user_id'
+     ];
 }

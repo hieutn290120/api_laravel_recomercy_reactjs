@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ContacUs;
+use App\ContactUs;
 use JWTAuth;
 
 class APIContactUsController extends Controller
@@ -14,13 +14,13 @@ class APIContactUsController extends Controller
             $user  = JWTAuth::toUser($request->all()['token']);
         
             $feedback = ContactUs::updateOrCreate(
+                ['feddback'=>$request->all('description')],
                 [
-                    "name"=>$request->all('id'),
-                    "email"=>$request->all('id'),
-                    "address"=>$request->all('id'),
-                    "phone"=>$request->all('id'),
-                    "feddback"=>$request->all('id'),
-                    "user_id"=>$user->id,
+                    'name'=>$request->all('name'),
+                    'email'=>$request->all('email'),
+                    'address'=>$request->all('address'),
+                    'phone'=>$request->all('phone'),
+                    'user_id'=>$user->id,
                 ]
             );
 
