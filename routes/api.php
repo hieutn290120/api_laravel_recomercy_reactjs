@@ -91,7 +91,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::post('product/getdatacart', 'APICartShoppingController@showlistcart');
     Route::post('product/getdatacartanduser', 'APICartShoppingController@showlistcartanduser');
     Route::delete('product/deletecart/{id}', 'APICartShoppingController@removelistcartbyid');
-    Route::get('product/getdatacart/discount', 'APICartShoppingController@showlistcartdiscount');
+    Route::post('product/getdatacart/discount', 'APICartShoppingController@showlistcartdiscount');
 });
 
 
