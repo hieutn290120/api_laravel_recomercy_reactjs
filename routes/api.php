@@ -54,10 +54,12 @@ Route::get('product/amply','APIProductController_new@showamply');
 
 Route::post('register','UserController@register');
 Route::post('registerCustomer','UserController@registerCustomer');
+Route::post('resestpassword', 'UserController@resetPassword');
 
 Route::post('uploadfile','UserController@uploadfile');
 Route::delete('remove/user/{id}','UserController@delete');
 
+Route::post('sendmail/checkedresestpass', 'APISendMailController@sendMailRestPassword');
 
 //Search Product
 

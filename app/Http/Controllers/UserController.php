@@ -89,7 +89,14 @@ class UserController extends Controller
          return response()->json($users, 200);
     }
 
+    public function resetPassword(Request $request){
+        $iduser = decrypt($request->all()['token']);
 
+        User::where('id', $iduser )
+            ->update(
+                ['password' => Hash::make($request->all()['password'])]
+                );
+            return response()->json(200);
+    }
 
-    
 }

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\sendMail;
+use App\Mail\SendMailCheckedResetPassword;
 use JWTAuth;
 use App\Product_new;
 use App\Cart;
+use App\User;
 
 class APISendMailController extends Controller
 {
@@ -38,5 +40,19 @@ class APISendMailController extends Controller
         return response()->json(
             $request
         );
+    }
+
+    public function sendMailRestPassword(Request $request){
+           $user =  User::where("email", $request->all()['emailorphone'])->orWhere('phone',$request->all()['emailorphone'])->get();
+            
+           $data = [
+            'name' =>  $user[0]->name,
+            'token' => encrypt($user[0]->id)
+           ];
+
+            Mail::to($request->all()['emailorphone'])->send(new SendMailCheckedResetPassword($data));
+
+           
+            return response()->json(200);
     }
 }

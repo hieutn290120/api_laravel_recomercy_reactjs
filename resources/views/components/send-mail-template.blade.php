@@ -1,4 +1,3 @@
-
 <!DocType html>
 <html>
     <head>
@@ -72,7 +71,7 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td>{{$data['total']}}</td>
+                  <td style="font-size: 15px; font-weight: bold;">{{$data['total']}}</td>
               </tr>
           </tfoot>
         </table>
