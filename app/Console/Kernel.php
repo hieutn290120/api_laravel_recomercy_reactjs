@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\DeleteRecords;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+       DeleteRecords::class,
     ];
 
     /**
@@ -25,6 +27,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        
+        // Lập lịch 10 phút thì xóa 1 row có trong table path_reset
+        $schedule->command('delete-path_reset')
+          ->weekdays()
+          ->everyMinute()
+          ->timezone('Asia/Ho_Chi_Minh');
     }
 
     /**

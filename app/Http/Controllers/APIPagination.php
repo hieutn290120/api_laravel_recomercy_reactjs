@@ -8,10 +8,11 @@ use App\Cart;
 class APIPagination extends Controller
 {
     //
-    public function Pagination(Request $request, $id){
+    public function Pagination(Request $request, $id)
+    {
 
-        $cart = Cart::where('user_id',$id)->paginate(1);
-        
+        $cart = Cart::where('user_id', $id)->paginate(1);
+
         return response()->json([
             'status' => true,
             'listcart' => $cart

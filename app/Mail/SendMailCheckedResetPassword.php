@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -32,7 +31,6 @@ class SendMailCheckedResetPassword extends Mailable
     public function build()
     {
         return $this->from('customer.service.hieu@gmail.com')->subject('New Customer Equiry')
-        ->view('components.send-mail-resest-password')->with('data', $this->data);
+            ->view('components.send-mail-resest-password')->with('data', $this->data);
     }
-    
 }
